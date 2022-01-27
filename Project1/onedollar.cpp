@@ -150,9 +150,9 @@ Unistroke::Unistroke(std::string name, std::vector <Point> points)
     this->name = name;
     Points = Resample(points,64);
     radians = Indicative_Angle(Points);
-    Points = Rotate_By(points, -radians);
-    Points = Scale_To(points, 250);
-    Points = Transalte_To(points, Point(0,0));
+    Points = Rotate_By(Points, -radians);
+    Points = Scale_To(Points, 250);
+    Points = Transalte_To(Points, Point(0,0));
 }
 
 float Unistroke::Path_Distance(std::vector <Point> A, std::vector <Point> B)

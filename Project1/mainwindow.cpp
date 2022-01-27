@@ -87,9 +87,9 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
  if(event->button() == Qt::LeftButton)
  {
      trackedPoints.push_back(Point(xPoint,yPoint));
-     Unistroke x;
+     Unistroke can("",trackedPoints);
      std::pair <Unistroke,float> answer;
-     answer = x.Recognize(trackedPoints,templates);
+     answer = can.Recognize(can.Points,templates);
      statusBar()->showMessage( QString::fromStdString(answer.first.name));
      trackedPoints.clear();
 
