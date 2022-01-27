@@ -15,6 +15,7 @@ std::vector <Point> OneDollar::Resample(std::vector <Point> points, int n)
     std::vector <Point> newPoints;
     for(unsigned int i = 1; i < points.size();i++)
     {
+
         float d = Distance(points[i-1],points[i]);
         if((D+d) >= I)
         {
@@ -53,7 +54,6 @@ float OneDollar::Distance(Point p1, Point p2)
 float OneDollar::Indicative_Angle(std::vector<Point> points)
 {
     Point c = Centroid(points);
-    float cx = c.X;
     float s =  std::atan2(c.Y-points[0].Y, c.X - points[0].X);
     return s;
 }
