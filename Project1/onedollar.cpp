@@ -176,29 +176,29 @@ float Unistroke::Distance_At_Angle(std::vector<Point> points, Unistroke T, int �
     return d;
 }
 
-float Unistroke::Distance_At_Best_Angle(std::vector<Point> points, Unistroke T, int θa, int θb, int θΔ)
+float Unistroke::Distance_At_Best_Angle(std::vector<Point> points, Unistroke T, int thetaA, int thetaB, int thetaDelta)
 {
-    float x1 = φ*θa + (1-φ)*θb;
+    float x1 =phi*thetaA + (1-phi)* thetaB;
     float f1 = Distance_At_Angle(points, T,x1);
-    float x2 = (1-φ)*θa + φ*θb;
+    float x2 = (1-phi)*thetaA +phi* thetaB;
     float f2 = Distance_At_Angle(points, T,x2);
 
-    while(std::abs(θb-θa) >θΔ)
+    while(std::abs(thetaB-thetaA) >thetaDelta)
     {
         if(f1 < f2)
         {
-            θb = x2;
+           thetaB = x2;
             x2 = x1;
             f2 = f1;
-            x1 = φ*θa + (1-φ)*θb;
+            x1 =phi*thetaA + (1-phi)*thetaB;
             f1 = Distance_At_Angle(points, T, x1);
         }
         else
         {
-            θa = x2;
+            thetaA = x2;
             x1 = x2;
             f1 = f2;
-            x2 = (1-φ)*θa + φ*θb;
+            x2 = (1-phi)*thetaA +phi*thetaB;
             f2 = Distance_At_Angle(points, T, x2);
         }
     }
@@ -211,7 +211,7 @@ std::pair<Unistroke,float> Unistroke::Recognize(std::vector<Point> points, std::
     Unistroke TT;
     for(const Unistroke &T:templates)
     {
-        float d =Distance_At_Best_Angle(points, T,-θ,+θ,θΔ);
+        float d =Distance_At_Best_Angle(points, T,-theta,+theta,thetaDelta);
         if (d < b)
         {
             b = d;

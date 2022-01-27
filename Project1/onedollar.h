@@ -49,9 +49,9 @@ public:
 class Unistroke:OneDollar
    {
 
-    float φ = 0.5*(-1.0 + std::sqrt(5.0));
-    float θΔ = 2;
-    float θ = 45;
+    float phi = 0.5*(-1.0 + std::sqrt(5.0));
+    float thetaDelta = 2;
+    float theta = 45;
    public:
        Unistroke();
        Unistroke(std::string name, std::vector <Point> points);
@@ -59,8 +59,8 @@ class Unistroke:OneDollar
        std::vector <Point> Points;
        float radians;
        float Path_Distance(std::vector <Point> A, std::vector <Point> B);
-       float Distance_At_Angle(std::vector <Point> points, Unistroke T, int θ);
-       float Distance_At_Best_Angle(std::vector <Point> points, Unistroke T, int θa,int θb,int θΔ);
+       float Distance_At_Angle(std::vector <Point> points, Unistroke T, int theta);
+       float Distance_At_Best_Angle(std::vector <Point> points, Unistroke T, int thetaA,int thetaB,int thetaDelta);
        std::pair<Unistroke,float> Recognize(std::vector <Point> points,std::vector <Unistroke> templates);
 };
 
