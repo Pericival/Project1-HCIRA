@@ -2,6 +2,7 @@
 #include <vector>
 #include <math.h>
 #include <limits>
+#include <cmath>
 
 OneDollar::OneDollar()
 {
@@ -169,9 +170,9 @@ float Unistroke::Path_Distance(std::vector <Point> A, std::vector <Point> B)
     return x;
 }
 
-float Unistroke::Distance_At_Angle(std::vector<Point> points, Unistroke T, int θ)
+float Unistroke::Distance_At_Angle(std::vector<Point> points, Unistroke T, int theta)
 {
-    std::vector <Point> newPoints = Rotate_By(points,θ);
+    std::vector <Point> newPoints = Rotate_By(points,theta);
     float d = Path_Distance(newPoints,T.Points);
     return d;
 }
