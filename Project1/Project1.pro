@@ -11,13 +11,11 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    onedollar.cpp \
-    point.cpp
+    onedollar.cpp
 
 HEADERS += \
     mainwindow.h \
-    onedollar.h \
-    point.h
+    onedollar.h
 
 FORMS += \
     mainwindow.ui
