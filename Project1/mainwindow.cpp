@@ -5,15 +5,18 @@
 #include <QPainter>
 #include <QEvent>
 #include <QMouseEvent>
+#include "onedollar.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     //Uses UI file to create a canvas quickly for easy of use
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui( new Ui::MainWindow)
 {
 
     ui->setupUi(this);
     this->setFixedSize(QSize(900,600));
+
 }
 
 MainWindow::~MainWindow()
@@ -26,6 +29,7 @@ int yPoint = -1;
 
 void MainWindow::paintEvent(QPaintEvent *)
 {
+
     //Main window Updater
     QPainter painter(this);
     QPen pen(Qt::blue,20,Qt::SolidLine,Qt::RoundCap,Qt::RoundJoin);

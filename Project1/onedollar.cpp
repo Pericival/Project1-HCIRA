@@ -45,7 +45,7 @@ float OneDollar::PathLength(std::vector <Point> points)
 float OneDollar::Distance(Point p1, Point p2)
 {
     int distanceX = p2.X - p1.X;
-    int distanceY = p2.X - p1.Y;
+    int distanceY = p2.Y - p1.Y;
     return std::sqrt(std::pow(distanceX,2) + std::pow(distanceY,2));
 
 }
@@ -53,7 +53,9 @@ float OneDollar::Distance(Point p1, Point p2)
 float OneDollar::Indicative_Angle(std::vector<Point> points)
 {
     Point c = Centroid(points);
-    return std::atan2(c.Y-points[0].Y, c.X - points[0].X);
+    float cx = c.X;
+    float s =  std::atan2(c.Y-points[0].Y, c.X - points[0].X);
+    return s;
 }
 
 std::vector <Point> OneDollar::Rotate_By(std::vector <Point> points, float w)
@@ -146,7 +148,7 @@ Unistroke::Unistroke()
 Unistroke::Unistroke(std::string name, std::vector <Point> points)
 {
     this->name = name;
-    Points = Resample(Points,64);
+    Points = Resample(points,64);
     radians = Indicative_Angle(Points);
     Points = Rotate_By(points, -radians);
     Points = Scale_To(points, 250);
@@ -203,7 +205,7 @@ std::pair<Unistroke,float> Unistroke::Recognize(std::vector<Point> points, std::
 {
     float b = std::numeric_limits<float>::infinity();
     Unistroke TT;
-    for(Unistroke T:templates)
+    for(const Unistroke &T:templates)
     {
         float d =Distance_At_Best_Angle(points, T,-θ,+θ,θΔ);
         if (d < b)
