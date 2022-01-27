@@ -15,7 +15,10 @@ std::vector <Point> OneDollar::Resample(std::vector <Point> points, int n)
     std::vector <Point> newPoints;
     for(unsigned int i = 1; i < points.size();i++)
     {
-
+        if(newPoints.size() == 64)
+        {
+            break;
+        }
         float d = Distance(points[i-1],points[i]);
         if((D+d) >= I)
         {
@@ -162,7 +165,8 @@ float Unistroke::Path_Distance(std::vector <Point> A, std::vector <Point> B)
     {
         d = d + Distance(A[i],B[i]);
     }
-    return d;
+    float x = d / A.size();
+    return x;
 }
 
 float Unistroke::Distance_At_Angle(std::vector<Point> points, Unistroke T, int θ)
@@ -214,7 +218,7 @@ std::pair<Unistroke,float> Unistroke::Recognize(std::vector<Point> points, std::
             TT = T;
         }
     }
-    float score = 1 - b/0.5 * std::sqrt(pow(250,2)+pow(250,2));
+    float score = 1 - b/(0.5 * std::sqrt(pow(250,2)+pow(250,2)));
 
     return std::make_pair(TT,score);
 }

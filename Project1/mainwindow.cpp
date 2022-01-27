@@ -58,6 +58,7 @@ void MainWindow::paintEvent(QPaintEvent *)
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event){
+
     if(event->button() == Qt::LeftButton){
 
     xPoint = event->pos().x();
@@ -90,7 +91,9 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
      Unistroke can("",trackedPoints);
      std::pair <Unistroke,float> answer;
      answer = can.Recognize(can.Points,templates);
-     statusBar()->showMessage( QString::fromStdString(answer.first.name));
+     QString k;
+     k.setNum(answer.second);
+     statusBar()->showMessage( QString::fromStdString(answer.first.name) + " Score" + k);
      trackedPoints.clear();
 
 }
